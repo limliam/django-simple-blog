@@ -1,0 +1,94 @@
+# Create the project folder 
+liam@liam-HP-EliteBook-840-G6:~$ cd projects/
+liam@liam-HP-EliteBook-840-G6:~/projects$ mkdir simpleblog
+liam@liam-HP-EliteBook-840-G6:~/projects$ cd simpleblog/
+
+# create a virtual environment and activate it
+liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ python3 -m venv sblog_env
+liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ ls
+sblog_env
+liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ source sblog_env/bin/activate
+
+# isntall django
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ pip install django
+
+# Open visual code
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ code .
+
+# create a project
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ django-admin startproject simpleblog
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ ls
+note.txt  sblog_env  simpleblog
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog$ cd simpleblog/
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ ls
+manage.py  simpleblog
+
+# create an app
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ python3 manage.py startapp blog
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ ls
+blog  manage.py  simpleblog
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ cd blog/
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog/blog$ ls
+admin.py  apps.py  __init__.py  migrations  models.py  tests.py  views.py
+
+
+# register the app blog to the project
+project setttings.py
+INSTALLED_APPS = [
+    ...
+    'blog'
+]
+
+# Create the database models. 
+blog models.py
+
+# create database 
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ python3 manage.py makemigrations
+Migrations for 'blog':
+  blog/migrations/0001_initial.py
+    - Create model Post
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, blog, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+    .....
+  Applying sessions.0001_initial... OK
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ 
+
+# Create and login super user and login to admin page
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ python3 manage.py createsuperuser
+Username (leave blank to use 'liam'): admin
+Email address: 
+Password: 
+Password (again): 
+Superuser created successfully.
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ 
+
+# start server
+(sblog_env) liam@liam-HP-EliteBook-840-G6:~/projects/simpleblog/simpleblog$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 31, 2023 - 07:20:11
+Django version 4.2.6, using settings 'simpleblog.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+# Ctrl click the link to open the app.
+http://127.0.0.1:8000/admin
+and login
+
+# register the model, Post to the website
+blog admin.py
+Refresh http://127.0.0.1:8000/admin/
+
+
+
+
+
+ 
+
